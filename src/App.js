@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import propTypes from 'prop-types';
+// import propTypes from 'prop-types';
 
 /**
  * クラスコンポーネント
@@ -29,38 +29,81 @@ import propTypes from 'prop-types';
 /**
  * 関数コンポーネント２
  */
-const App = () => {
-  const profiles = [
-    {name: "Taro", age: 10},
-    {name: "Hanako", age: 5},
-    {name: "NoAge", age: 1}
-  ]
+// const App = () => {
+//   const profiles = [
+//     {name: "Taro", age: 10},
+//     {name: "Hanako", age: 5},
+//     {name: "NoAge", age: 1}
+//   ]
+//   return (
+//     <>
+//     {
+//       profiles.map((profile, index) => {
+//         return <User name={profile.name} age={profile.age} key={index} />
+//       })
+//     }
+//     </>
+//   );
+// }
 
-  return (
-    <>
-    {
-      profiles.map((profile, index) => {
-        return <User name={profile.name} age={profile.age} key={index} />
-      })
-    }
-    </>
-  );
-}
+/**
+ * 関数コンポーネント３
+ */
+const App = () => (<Counter></Counter>)
 
-const User = (props) => {
-  return (
-    <div>{props.name}, and {props.age}</div>
-  );
+/**
+ * User関数コンポーネント
+ * @param {*} props
+ */
+// const User = (props) => {
+//   return (
+//     <div>{props.name}, and {props.age}</div>
+//   );
+// }
+
+
+class Counter extends Component {
+  constructor (props) {
+    super(props)
+    console.log(this.state)
+    this.state = {count: 0}
+  }
+
+  handlePlusButton = () => {
+    /**
+     * これはやってはいけない
+     * this.state = {count: this.state.count + 1}
+     *
+     * setStateを使うと必ずrenderが実行されるので再描画まで自動的に行われる
+     */
+
+    this.setState({count: this.state.count + 1})
+  }
+
+  handleMinusButton = () => {
+    this.setState({count: this.state.count - 1})
+  }
+
+  render () {
+    console.log('render')
+    return (
+      <>
+        <div>{this.state.count}</div>
+        <button onClick={this.handlePlusButton}>+1</button>
+        <button onClick={this.handleMinusButton}>-1</button>
+      </>
+    )
+  }
 }
 
 /**
  * プロップTypes
  * Propsの型を宣言する
  */
-User.propTypes = {
-  name: propTypes.string,
-  age: propTypes.number.isRequired,
-}
+// User.propTypes = {
+//   name: propTypes.string,
+//   age: propTypes.number.isRequired,
+// }
 
 /**
  * デフォルトプロップス
