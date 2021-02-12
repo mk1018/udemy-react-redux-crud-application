@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import propTypes from 'prop-types';
 
 /**
  * クラスコンポーネント
@@ -32,7 +33,7 @@ const App = () => {
   const profiles = [
     {name: "Taro", age: 10},
     {name: "Hanako", age: 5},
-    {name: "NoAge"}
+    {name: "NoAge", age: 1}
   ]
 
   return (
@@ -52,9 +53,22 @@ const User = (props) => {
   );
 }
 
-User.defaultProps = {
-  age: 1
+/**
+ * プロップTypes
+ * Propsの型を宣言する
+ */
+User.propTypes = {
+  name: propTypes.string,
+  age: propTypes.number.isRequired,
 }
+
+/**
+ * デフォルトプロップス
+ * コンポーネントの渡された値で不明なもののデフォルト値が設定できる
+ */
+// User.defaultProps = {
+//   age: 1
+// }
 
 /**
  * JSXをJavaScriptで表現したもの
