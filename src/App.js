@@ -29,20 +29,31 @@ import React, {Component} from 'react';
  * 関数コンポーネント２
  */
 const App = () => {
+  const profiles = [
+    {name: "Taro", age: 10},
+    {name: "Hanako", age: 5},
+    {name: "NoAge"}
+  ]
+
   return (
     <>
-      <Cat />
-      <Cat />
-      <Cat />
-      <Cat />
+    {
+      profiles.map((profile, index) => {
+        return <User name={profile.name} age={profile.age} key={index} />
+      })
+    }
     </>
   );
 }
 
-const Cat = () => {
+const User = (props) => {
   return (
-    <div>猫</div>
+    <div>{props.name}, and {props.age}</div>
   );
+}
+
+User.defaultProps = {
+  age: 1
 }
 
 /**
